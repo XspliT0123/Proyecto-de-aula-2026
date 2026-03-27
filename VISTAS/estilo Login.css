@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #ffffffaf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body{
+    background-image: url(https://backend.shaio.org/sites/default/files/blog/frutas-saludables.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h2{
+    font-size: 30px;
+}
+label{
+    
+    font-size: 18px;
+}
+button{
+    font-size: 18px;
+}
+.inpout-group{
+    margin-top: 20px;
+}
+.login-container {
+    width: 15%;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.login-box {
+    background: rgba(218, 216, 216, 0.719);
+    height: 50vh;
+    padding: 50px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.input-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+input{
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
+    background: #84dad2;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
