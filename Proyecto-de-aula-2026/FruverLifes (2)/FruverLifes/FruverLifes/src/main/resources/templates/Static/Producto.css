@@ -1,0 +1,143 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #ffffff;
+}
+
+.Abministrador {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+}
+.header {
+    grid-column: 1 / 4;
+    background-image: url(https://backend.shaio.org/sites/default/files/blog/frutas-saludables.jpg);
+    background-size: cover;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 21px;
+}
+
+.Menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logofijo{
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 60%;
+  border: 2px solid #333;
+  background: rgb(230, 42, 42);
+}
+
+.barra{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid #4807fccc;
+    background: #3c80ff73;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.Acciones{
+    width: 260px;
+    height: 100vh;
+    background: #2c3e50;
+    padding-top: 40px;
+}
+.Acciones ul li a{
+    display: block;
+    color: white;
+    text-decoratin: none;
+    padding: 18px 25px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+.Acciones ul {
+    list-style-type: none;
+    width: 100%;
+    background: #daffef00;
+    padding: 0 15px;
+}
+
+.Acciones ul li a:hover{
+ background: #438bdd79;
+}
+.Acciones ul .submenu{
+    margin: 0%;
+    background: #1bddff54;
+    width: 100%;
+}
+.submenu{
+    list-style: none;
+    padding-left: 20px;
+    list-style: none;
+    margin-top: 5px;
+}
+.submenu{
+    display: none;
+    background: #34495e;
+}
+.submenu.activo{
+  display: block;
+}
+.submenu li a{
+    font-size: 17px;
+    padding-left: 50px;
+}
+
+.opcion{
+    white-space: nowrap;
+}
+.opcion .submenu li a{
+    white-space: nowrap;
+    font-size: 18px;
+    padding-left: 10%;
+}
+.usuario {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    font-size: 20px;
+    background: #ffffff6c;
+    padding-top: 12px;
+    padding: 1px 7px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(77, 16, 16, 0);
+    width: 180px;
+    text-align: center;
+}
+.header {
+    position: relative;
+}
+
+.usuario ul{
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.usuario li{
+    color: #0c140d;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
