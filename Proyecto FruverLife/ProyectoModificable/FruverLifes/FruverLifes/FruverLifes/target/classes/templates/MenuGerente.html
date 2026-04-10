@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Gerente</title>
+    <link rel="stylesheet" th:href="@{/Estilo-MenuGerente.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // SUBMENÚ
+            document.getElementById("toggleMenu").addEventListener("click", function (e) {
+                e.preventDefault();
+                document.getElementById("submenu").classList.toggle("activo");
+            });
+
+        });
+
+        function mostrarSeccion(id) {
+            const seccion = document.getElementById(id);
+
+            if (seccion.style.display === "none" || seccion.style.display === "") {
+                seccion.style.display = "block";
+            } else {
+                seccion.style.display = "none";
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="Gerente">
+    <header class="header">
+        <h1>FruverLife</h1>
+        <div class="usuario">
+            <span><strong>Usuario:</strong> Juan</span>
+            <span><strong>Nombre:</strong> Juan Pérez</span>
+            <span><strong>Rol:</strong> Administrador</span>
+        </div>
+    </header>
+
+    <aside class="barra">
+        <nav class="Acciones">
+            <ul>
+
+                <li class="opcion">
+                    <a href="#" id="toggleMenu">
+                        <span>Gestión de Stock</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+
+                    <ul class="submenu" id="submenu">
+                        <li><a href="#">Agregar Producto</a></li>
+                        <li><a href="#">Modificar Producto</a></li>
+                        <li><a href="#">Eliminar Producto</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Listado de Stock</a></li>
+                <li>
+                    <a href="#" onclick="mostrarSeccion('usuario')">
+                        Registro de usuario
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="Menu">
+        <div id="usuario" class="contenedor" style="display:none;">
+            <h2>Registro de Usuario</h2>
+
+            <form action="/usuarios/registro" method="post">
+
+                <label>Nombre:</label>
+                <input type="text" name="nombreUsuario">
+
+                <label>Contraseña:</label>
+                <input type="password" name="contrasenia">
+
+                <label>Cargo:</label>
+                <input type="text" name="cargo">
+
+                <button type="submit">Registrar</button>
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
