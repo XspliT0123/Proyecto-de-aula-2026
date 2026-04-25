@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Gerente</title>
+
+    <link rel="stylesheet" th:href="@{/Estilo-MenuGerente.css(v=2)}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script>
+        function mostrarSeccion(id) {
+            const seccion = document.getElementById(id);
+            if (seccion.style.display === "none" || seccion.style.display === "") {
+                seccion.style.display = "block";
+            } else {
+                seccion.style.display = "none";
+            }
+        }
+
+        function togglePassword(){
+            const input = document.getElementById("contrasenia");
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="Gerente">
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>Fruver<span>Life</span></h1>
+
+        <div class="usuario">
+            <span>
+                <strong>Usuario:</strong>
+                <span th:text="${session.usuarioLogueado?.usuario}"></span>
+            </span>
+
+            <span>
+                <strong>Rol:</strong>
+                <span th:text="${session.usuarioLogueado?.cargo}"></span>
+            </span>
+        </div>
+    </header>
+
+    <!-- BARRA LATERAL -->
+    <aside class="barra">
+        <nav class="Acciones">
+            <ul>
+                <li><a href="#">Informe de mercancía</a></li>
+                <li><a href="#">Informe Diario</a></li>
+                <li><a href="#">Informe de Desperdicios</a></li>
+                <li><a href="#">Listado de Stock</a></li>
+
+                <li><a href="#" onclick="mostrarSeccion('usuario')">Registro de usuario</a></li>
+            </ul>
+
+            <a href="/auth/logout" class="cerrar-sesion">Cerrar Sesión</a>
+        </nav>
+    </aside>
+
+    <!-- CONTENIDO -->
+    <main class="Menu">
+
+        <!-- REGISTRO USUARIO -->
+        <div id="usuario" class="contenedor" style="display:none;">
+
+            <h2>Registro de Usuario</h2>
+
+            <form id="formRegistro" autocomplete="off">
+
+                <label>Usuario:</label>
+                <input type="text" name="usuario" placeholder="Usuario" required>
+
+                <label>Contraseña:</label>
+                <div class="password-container">
+                    <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" required>
+                    <span class="toggle" onclick="togglePassword()">👁️</span>
+                </div>
+
+                <label>Cargo:</label>
+                <select name="cargo" required>
+                    <option value="">Seleccione</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="Cajero">Cajero</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+
+                <button type="submit">Registrar</button>
+
+            </form>
+
+            <p id="mensaje"></p>
+        </div>
+
+    </main>
+
+</div>
+
+<!-- SCRIPT REGISTRO -->
+<script>
+    document.getElementById("formRegistro").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const datos = new FormData(this);
+
+        fetch("/usuarios/guardar", {
+            method: "POST",
+            body: datos
+        })
+        .then(() => {
+            document.getElementById("mensaje").innerText = "Usuario registrado correctamente";
+            document.getElementById("mensaje").style.color = "green";
+            this.reset();
+        })
+        .catch(() => {
+            document.getElementById("mensaje").innerText = "Error al registrar";
+            document.getElementById("mensaje").style.color = "red";
+        });
+    });
+</script>
+
+</body>
+</html>

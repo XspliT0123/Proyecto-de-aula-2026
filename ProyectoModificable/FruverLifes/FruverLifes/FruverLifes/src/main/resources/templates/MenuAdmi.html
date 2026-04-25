@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Administrador</title>
+
+    <link rel="stylesheet" th:href="@{/Estilo-MenuAdmi.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const toggleMenu = document.getElementById("toggleMenu");
+            const submenu = document.getElementById("submenu");
+
+            toggleMenu.addEventListener("click", function (e) {
+                e.preventDefault();
+                submenu.classList.toggle("activo");
+            });
+        });
+
+        function mostrarSeccion(id) {
+            const secciones = document.querySelectorAll(".contenedor");
+            secciones.forEach(sec => sec.style.display = "none");
+            document.getElementById(id).style.display = "block";
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="Administrador">
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>FruverLife</h1>
+
+        <div class="usuario">
+            <span>
+                <strong>Usuario:</strong>
+                <span th:text="${session.usuarioLogueado?.usuario}"></span>
+            </span>
+
+            <span>
+                <strong>Rol:</strong>
+                <span th:text="${session.usuarioLogueado?.cargo}"></span>
+            </span>
+        </div>
+    </header>
+
+    <!-- MENU -->
+    <aside class="barra">
+        <nav class="Acciones">
+
+            <ul>
+
+                <li class="opcion">
+                    <a href="#" id="toggleMenu">
+                        <span>Gestión de Stock</span>
+                        <i class="fas fa-chevron-down" style="color: rgba(35, 36, 37, 0.726);"></i>
+                    </a>
+
+                    <ul class="submenu" id="submenu">
+                        <li><a href="#">Listado de Stock</a></li>
+                        <li><a href="#">Agregar Producto</a></li>
+                        <li><a href="#">Modificar Producto</a></li>
+                        <li><a href="#">Eliminar Producto</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Gestión de Desperdicios</a></li>
+
+                <li>
+                    <a href="#" onclick="mostrarSeccion('proveedores')">
+                        Registro de Proveedores
+                    </a>
+                </li>
+
+                <li><a href="#">Ingreso de Mercancia</a></li>
+
+            </ul>
+
+            <a href="/auth/logout" class="cerrar-sesion">Cerrar Sesión</a>
+
+        </nav>
+    </aside>
+
+    <main class="contenido">
+
+        <div id="proveedores" class="contenedor" style="display:none;">
+
+            <h2>Registro de Proveedores</h2>
+
+            <form id="formProveedor">
+
+                <label>NIT:</label>
+                <input type="text" name="nit" required>
+
+                <label>Nombre:</label>
+                <input type="text" name="nombre" required>
+
+                <label>Número:</label>
+                <input type="text" name="numero" required>
+
+                <label>Correo:</label>
+                <input type="email" name="correo" required>
+
+                <button type="submit">Guardar Proveedor</button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+<script>
+    document.getElementById("formProveedor").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const datos = new FormData(this);
+
+        fetch("/proveedores/guardar", {
+            method: "POST",
+            body: datos
+        })
+        .then(r => r.text())
+        .then(msg => {
+            alert(msg);
+            this.reset();
+        })
+        .catch(() => {
+            alert("Error al guardar proveedor");
+        });
+    });
+</script>
+
+</body>
+</html>
